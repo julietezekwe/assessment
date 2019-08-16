@@ -1,4 +1,6 @@
+import fs from 'fs';
 import DocumentNotFound from './RepositoryErrors';
+
 /**
  * @description BaseRepository
  * @class BaseRepository
@@ -56,16 +58,26 @@ export default class BaseRepository {
    * @param {object} options Query options
    * @returns {document} Returns an array of documents.
    */
-  async findAll(query, options) {
+  async findAll({ limit, page }) {
     try {
-      const {
-        select, populate = 'amouny, bank', limit, page = 1,
-      } = options;
-      const queryExec = this.model.find(query).populate(populate);
-      queryExec.select(select);
+      const queryExec = this.model.find();
       return limit
         ? await this.paginate(queryExec, { limit, page })
         : await queryExec.exec();
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  /**
+   * @description bulk insert
+   * @returns {boolean} true or false
+   */
+  async bulkInsert() {
+    try {
+      const numbers = JSON.parse(fs.readFileSync(`${__dirname}/numbers.json`, 'utf-8'));
+      this.model.collection.insert(numbers);
+      return true;
     } catch (error) {
       throw error;
     }

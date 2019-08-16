@@ -10,10 +10,7 @@ class BaseSchema extends Schema {
    * @param {object} schemaOptions
    */
   constructor(definitions, schemaOptions) {
-    const defaultDefinition = {
-      createdAt: { type: Date, default: Date.now },
-      updatedAt: { type: Date, default: Date.now },
-    };
+    const defaultDefinition = {};
     super(
       { ...defaultDefinition, ...definitions },
       { ...schemaOptions },
