@@ -1,0 +1,37 @@
+version: '3'
+services:
+  app:
+    container_name: assessments
+    restart: always
+    env_file: .env
+    environment:
+      - NODE_ENV=$NODE_ENV
+      - PORT=$PORT
+      - LOG_LABEL=$LOG_LABEL
+      - LOG_LEVEL=$LOG_LEVEL
+      - LOG_FILE=$LOG_FILE
+      - API_PREFIX=$API_PREFIX
+      - DATABASE_URL=$DOCKER_DB_URL
+      - REDIS_HOST=$DOCKER_REDIS_HOST
+      - REDIS_PORT:$REDIS_PORT
+    build: .
+    ports:
+      - '90:9000'
+    links:
+      - mongoDb
+      - redisService
+  mongoDb:
+    container_name: mongoDb
+    image: mongo
+    volumes:
+      - dbdata:/data/db
+    ports:
+      - '27017:27017'
+  redisService:
+    container_name: redisService
+    image: redis
+    volumes:
+      - redisdata:/data
+volumes:
+  dbdata:
+  redisdata:
