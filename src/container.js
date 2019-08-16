@@ -7,7 +7,7 @@ import createLogger from './logger';
 import connectToDatabase from './db';
 import createApp from './index';
 import RedisClient from './utils/Redis';
-// import userRoute from './routes/userRoutes';
+
 const configureContainer = () => {
   // Create IoC container for dependency injection
   const container = createContainer();
