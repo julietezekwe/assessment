@@ -44,8 +44,9 @@ export default class BaseRepository {
       const offset = perPage * (page - 1);
       const pages = Math.ceil(total / perPage);
       const docs = await query.skip(offset).limit(perPage).exec();
+      const hasNext = page < pages;
       return {
-        docs, total, perPage, page, pages,
+        docs, total, perPage, page, pages, hasNext,
       };
     } catch (error) {
       throw error;

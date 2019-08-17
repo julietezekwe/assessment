@@ -4,7 +4,7 @@ import autoBind from 'auto-bind';
    */
 class NumberController {
   /**
-   * Creates an instance of NumberController.
+   * Creates an instance of NumberCnontroller.
    * @param {object} param
    * @memberof NumbersController
    */
