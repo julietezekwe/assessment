@@ -1,5 +1,5 @@
 import fs from 'fs';
-import DocumentNotFound from './RepositoryErrors';
+import { DocumentNotFound } from '../utils/errors';
 
 /**
  * @description BaseRepository

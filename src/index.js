@@ -5,6 +5,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
+import handleError from './middlewares/handleErrors';
 
 const createApp = ({ logger, container, config }) => {
   const app = express();
@@ -43,6 +44,8 @@ const createApp = ({ logger, container, config }) => {
     app.use(`${config.api.prefix}/${name}`, router);
     logger.info(`Mounted ${name} to ${config.api.prefix}/${name}}`);
   });
+
+  app.use(handleError());
 
   // error handlers
   app.use('*', (req, res, next) => {
