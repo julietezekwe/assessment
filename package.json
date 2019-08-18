@@ -1,5 +1,5 @@
 {
-  "name": "node.js-architecture",
+  "name": "assessment",
   "version": "1.0.0",
   "description": "node.js clean code architecture",
   "main": "src/index.js",
@@ -7,7 +7,7 @@
   "author": "chidimma Ezekwe <julietezekwe@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf dist && babel src -d dist",
+    "build": "rm -rf dist && babel src -d dist && cp src/repositories/numbers.json dist/repositories/numbers.json",
     "watch": "nodemon",
     "docker": "docker-compose up",
     "docker:build": "docker-compose build",
