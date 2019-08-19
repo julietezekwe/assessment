@@ -16,6 +16,7 @@ class RedisClient {
     // create and connect to redis client
     this.client = Redis.createClient({
       host: config.redis.host,
+      auth_pass: config.redis.pass,
       port: config.redis.port,
     });
     this.logger = logger;
